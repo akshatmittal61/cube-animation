@@ -1,11 +1,21 @@
-const i1 = prompt("Url for image 1");
-const i2 = prompt("Url for image 2");
-const i3 = prompt("Url for image 3");
-const i4 = prompt("Url for image 4");
-const i = [i1, i2, i3, i4];
+const shadowDisplay = document.querySelector(".shadow-display");
+const cubeFaces = document.querySelector(".cube-faces");
 
-console.log(i);
-const images = document.querySelectorAll("img");
-images.forEach((a, index) => {
-	a.setAttribute("src", i[index]);
-});
+const getImgs = () => {
+	const is = prompt("Url for images");
+	const time = prompt("Enter animation time in seconds");
+	const bgcolor = prompt("Enter background color");
+	let promptImages = [];
+	promptImages = is.split("https");
+	console.log(promptImages);
+	const images = document.querySelectorAll("img");
+	images.forEach((a, index) => {
+		console.log(`https${promptImages[index + 1]}`);
+		a.setAttribute("src", `https${promptImages[index + 1]}`);
+	});
+	shadowDisplay.style.animation = `spin ${+time}s infinite linear`;
+	cubeFaces.style.animation = `spin ${+time}s infinite linear`;
+	document.querySelector("body").style.backgroundColor = bgcolor;
+};
+
+getImgs();
